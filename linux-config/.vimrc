@@ -101,3 +101,5 @@ set background=dark
 set autoindent
 set smartindent
 set nobackup
+call pathogen#infect()
+filetype plugin indent on

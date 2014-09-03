@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/etc/firefox'
+let g:netrw_dirhist_2='/home/totrit/work/workspace/4.2_r1/frameworks/base/tests/DumpRenderTree'
+let g:netrw_dirhist_3='/home/totrit/work/workspace/4.2_r1/external/webkit/Source/WebCore/WebCore.gyp'
+let g:netrw_dirhist_4='/home/totrit/work/workspace/4.2_r1/external/webkit/Tools'
+let g:netrw_dirhist_5='/home/totrit/work/workspace/LayoutTests/fast/text'
