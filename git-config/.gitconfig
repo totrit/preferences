@@ -1,0 +1,48 @@
+[user]
+  name = Alvin Ma
+  email = alvin.ma@ikegps.com
+
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  ui = true
+
+[alias]
+  st = status
+  ci = commit
+  co = checkout
+  f = fetch -p --recurse-submodules
+  rb = rebase
+  m = merge --no-ff
+  d = diff
+  ds = diff --staged
+  up = pull --rebase
+  pu = push origin HEAD
+  lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+  lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+  lg = !"git lg1"
+  l = lg
+  b = branch
+  bm = branch --merged
+  bmd = !git branch --merged | grep -v '^* master$' | grep -v '^  master$' | xargs git branch -d
+
+  remove-merged-branches = !git f && git bmd
+  recursive-remove-merged-branches = "!f() { git fetch -p && git bmd && git submodule foreach --recursive git fetch -p && git submodule foreach --recursive git bmd; }; f"
+
+  recursive-tag-add = "!f() { git tag $1 && git submodule foreach --recursive git tag $1; }; f"
+  recursive-tag-remove = "!f() { git tag -d $1 && git submodule foreach --recursive git tag -d $1; }; f"
+  recursive-tag-push = "!f() { git push origin --tags && git submodule foreach --recursive git push origin --tags; }; f"
+  recursive-release-notes-ios = "!f() { git shortlog $1..$2 | grep "Merged "; git submodule foreach --recursive git shortlog $1..$2 | grep 'Merged \\|Entering' | sed 's/Entering //g'; }; f"
+  recursive-release-notes-android = "!f() { git shortlog $1..$2 | grep "Merged "; git submodule foreach --recursive git shortlog $1..$2 | grep 'Merged \\|Entering' | sed 's/Entering //g'; }; f"
+  recursive-remove-from-server = "!f() { git push origin :$1 && git submodule foreach --recursive git push origin :$1; }; f"
+
+  deepclean = "!f() { git clean -xfdf; git submodule foreach --recursive \"git clean -xdfd\"; }; f"
+  deepreset = "!f() { git co .; git submodule foreach --recursive \"git co .;\"; }; f"
+  deepst = "!f() { git st;  git submodule foreach --recursive \"git st\"; }; f"
+  deepfetch = "!f() { git fetch $1; git submodule foreach --recursive git fetch $1; }; f"  
+
+[core]
+  quotepath = false
+  editor = vim
+  trustctime = false
